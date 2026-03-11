@@ -1,0 +1,955 @@
+{
+  "type": "FeatureCollection",
+  "name": "Roman_Cities_Selection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "6535",
+        "modern": "Tarragona",
+        "latin": "Tarraco",
+        "greek": "Ταρράκων",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -550,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.25702,
+          41.11767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "12782",
+        "modern": "Córdoba",
+        "latin": "Corduba",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 2000,
+        "startyear": -330,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.7791517,
+          37.8847267
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "14305",
+        "modern": "Mérida",
+        "latin": "Augusta Emerita",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -30,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.3456061,
+          38.9158586
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "156",
+        "modern": "Narbonne",
+        "latin": "Narbo Martius",
+        "greek": "Νάρβων",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 2000,
+        "startyear": -750,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.003611,
+          43.184722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "105",
+        "modern": "Lyon",
+        "latin": "Lugdunum",
+        "greek": "Λούγδουνον",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 200,
+        "startyear": -550,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.819827,
+          45.759683
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "147",
+        "modern": "Bordeaux",
+        "latin": "Burdigala",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 200,
+        "startyear": -30,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.57918,
+          44.837789
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "52",
+        "modern": "Reims",
+        "latin": "Durocortorum",
+        "greek": "Δουροκόττορον/Δουρικορτόρα",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -330,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.033901,
+          49.253801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "3",
+        "modern": "Mainz",
+        "latin": "Mogontiacum",
+        "greek": "Μοκοντίακον",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -30,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.273869,
+          49.998912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "299",
+        "modern": "Köln",
+        "latin": "Claudia Ara Agrippinensium",
+        "greek": "Ἀγριππινηηνσίς",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 2000,
+        "startyear": -30,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.958162,
+          50.941335
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "1888",
+        "modern": "London",
+        "latin": "Londinium",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 200,
+        "startyear": -30,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.099181,
+          51.512514
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "1445",
+        "modern": "Milano",
+        "latin": "Mediolanium",
+        "greek": "Μεδιόλανον/Μεδιολάνιον",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 2000,
+        "startyear": -550,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.1881,
+          45.4637
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "1438",
+        "modern": "Roma",
+        "latin": "Roma",
+        "greek": "Ῥώμη",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -750,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4843457,
+          41.89262
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "19910",
+        "modern": "Sarmizegetusa",
+        "latin": "Sarmizegetusa",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -30,
+        "endyear": 300
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.7888,
+          45.51343
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "10710",
+        "modern": "Zollfeld",
+        "latin": "Virunum",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -30,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.366975,
+          46.697885
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "10",
+        "modern": "Augsburg",
+        "latin": "Augusta Vindelicum",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 200,
+        "startyear": -30,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.89655,
+          48.37277
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "10720",
+        "modern": "Petronell-Carnuntum",
+        "latin": "Carnuntum",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": 6,
+        "endyear": 400
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.86168,
+          48.1132
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "10939",
+        "modern": "Solin",
+        "latin": "Salona",
+        "greek": "Σάλων/Σαλῶναι",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -330,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.48365,
+          43.53814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "10877",
+        "modern": "Stari Kostolac",
+        "latin": "Viminacium",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -30,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.216122,
+          44.736776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21389",
+        "modern": "Constanța",
+        "latin": "Tomi",
+        "greek": "Τόμοι/Τόμις/Τῶμις",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 200,
+        "startyear": -550,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.661176,
+          44.172489
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21408",
+        "modern": "Plovdiv",
+        "latin": "Philippopolis",
+        "greek": "Φιλιππόπολις/Φιλιπούπολις",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -330,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.749106,
+          42.147439
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "17070",
+        "modern": "Korinthos",
+        "latin": "Korinthos",
+        "greek": "Κόρινθος",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -750,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.878721,
+          37.906045
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21235",
+        "modern": "Yeşilyayla",
+        "latin": "Nicopolis",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 200,
+        "startyear": -330,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.1476861,
+          40.1366024
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "17068",
+        "modern": "Thessaloniki",
+        "latin": "Thessalonica",
+        "greek": "Θεσσαλονίκη",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -750,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.949569,
+          40.630282
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21155",
+        "modern": "Efes",
+        "latin": "Ephesos",
+        "greek": "Ἔφεσος",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -750,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.339722,
+          37.941944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21204",
+        "modern": "İzmit",
+        "latin": "Nicomedia",
+        "greek": "Νικομήδεια",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -330,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.923486,
+          40.76445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21220",
+        "modern": "Ankara",
+        "latin": "Ancyra",
+        "greek": "Ἄνκυρα",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -330,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.858128,
+          39.944387
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21242",
+        "modern": "Kayseri",
+        "latin": "Caesarea",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 200,
+        "startyear": -750,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.483548,
+          38.733252
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21502",
+        "modern": "Antalya",
+        "latin": "Attaleia",
+        "greek": "Ἀττάλεια",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 200,
+        "startyear": -330,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.70541,
+          36.8839
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21245",
+        "modern": "Gözlü Kule",
+        "latin": "Tarsus",
+        "greek": "Ταρσός/Ταρσοί",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -750,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.89592,
+          36.91242
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21094",
+        "modern": "Antakya",
+        "latin": "Antiochia",
+        "greek": "Ἀντιόχεια",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 200,
+        "startyear": -750,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.165318,
+          36.200663
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21149",
+        "modern": "Caesarea",
+        "latin": "Caesarea",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -330,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8912663,
+          32.4987775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21090",
+        "modern": "Petra",
+        "latin": "Petra",
+        "greek": "Πέτρα",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -330,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.4464006,
+          30.3273975
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21801",
+        "modern": "Artashat",
+        "latin": "Artaxata",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 200,
+        "startyear": -330,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.546644,
+          39.957286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21809",
+        "modern": "Nusaybin",
+        "latin": "Nisibis",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 200,
+        "startyear": -330,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          41.214619,
+          37.068635
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21806",
+        "modern": "Erbil",
+        "latin": "Arbela",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -750,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.00901,
+          36.19143
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "15897",
+        "modern": "Carthago",
+        "latin": "Carthago",
+        "greek": "Καρχηδών",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -750,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.323056,
+          36.853056
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21642",
+        "modern": "Constantine",
+        "latin": "Cirta",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 200,
+        "startyear": -330,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.612555,
+          36.368187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21630",
+        "modern": "Cherchell",
+        "latin": "Iol Caesarea",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -550,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.186828,
+          36.607284
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21774",
+        "modern": "Tanger",
+        "latin": "Tingis",
+        "greek": "Τιγγίς",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 200,
+        "startyear": -550,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.810419,
+          35.787168
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "21126",
+        "modern": "Shahhat",
+        "latin": "Cyrene",
+        "greek": "Κυρήνη",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -750,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.856169,
+          32.818736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "10898",
+        "modern": "Aquincum",
+        "latin": "Aquincum",
+        "greek": "",
+        "ancient": 1,
+        "major": 1,
+        "type": "11",
+        "building": 0,
+        "accuracy": 20,
+        "startyear": -30,
+        "endyear": 640
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.049483,
+          47.564142
+        ]
+      }
+    }
+  ]
+}
