@@ -1,7 +1,7 @@
 var config = {
     style: 'mapbox://styles/carlossv-mapbox/cmmdo1vpb00gb01scbu3v08dc',
     accessToken: 'pk.eyJ1IjoiY2FybG9zc3YtbWFwYm94IiwiYSI6ImNtbW04eWY5aDEyY2IycXNiMDVuN2FoejEifQ.xKaab7LbnlNJGQL5YKGqkg',
-    projection: config && config.projection ? config.projection : 'globe',
+    projection: 'globe',
     showMarkers: false,
     markerColor: '#3FB1CE',
     inset: true,
