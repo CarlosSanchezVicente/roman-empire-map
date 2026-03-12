@@ -799,7 +799,9 @@
             // Escucha el clic directamente en el canvas del mapa
             map.getCanvas().addEventListener('click', function(e) {
                 var rect = map.getCanvas().getBoundingClientRect();
-                var point = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+                var px = e.clientX - rect.left;
+                var py = e.clientY - rect.top;
+                var point = new mapboxgl.Point(px, py);
 
                 // Convertir punto de pantalla a coordenadas geográficas
                 var lngLat = map.unproject(point);
