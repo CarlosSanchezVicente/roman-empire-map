@@ -556,11 +556,14 @@
 
         /* ── LAYER HELPERS ─────────────────────── */
         function getLayerPaintType(layer) {
-            return layerTypes[map.getLayer(layer).type];
+            var mapLayer = map.getLayer(layer);
+            if (!mapLayer) return null;
+            return layerTypes[mapLayer.type];
         }
 
         function setLayerOpacity(layer) {
             var paintProps = getLayerPaintType(layer.layer);
+            if (!paintProps) return; // capa no existe en el mapa, ignorar
             paintProps.forEach(function (prop) {
                 var options = {};
                 if (layer.duration) {
