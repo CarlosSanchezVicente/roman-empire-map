@@ -80,6 +80,6 @@ El recorrido abarca desde los orígenes de la República Romana en el Lacio hast
 
 ## Licencia
 
-El código base de Mapbox Storytelling está bajo licencia **BSD 3-Clause**. Ver archivo [`LICENSE.txt`](./LICENSE.txt).
+El código base de Mapbox Storytelling está bajo licencia **BSD 3-Clause**. Ver archivo [`LICENSE.txt`](https://github.com/CarlosSanchezVicente/roman-empire-map/blob/main/LICENSE).
 
 El contenido histórico (textos e imágenes) pertenece a sus respectivos autores y fuentes, citadas individualmente en cada capítulo.
