@@ -107,7 +107,7 @@ var config = {
                 <p>Tras la retirada de Pirro de Epiro, Roma captura Tarento y se convierte en la dueña indiscutible de toda la península itálica, hasta el sur de la Magna Grecia. Es el verdadero punto de partida de la expansión mediterránea.</p>,
                 <div class="media-container">
                     <img src="./assets/order3_298ac.webp" alt="Derrota a los samnitas" class="story-img">
-                    <p class="image-caption">La derrota de la flota cartaginesa en el cabo Ecnomo según un grabado de Gabriel de Saint-Aubin. 1763, Museo Getty, Los Ángeles. <a href="https://historia.nationalgeographic.com.es/a/primera-guerra-punica-conflicto-entre-roma-y-cartago-por-control-sicilia24788" target="_blank">Fuente</a></p>
+                    <p class="image-caption">La derrota de la flota cartaginesa en el cabo Ecnomo según un grabado de Gabriel de Saint-Aubin. 1763, Museo Getty, Los Ángeles. <a href="https://historia.nationalgeographic.com.es/a/primera-guerra-punica-conflicto-entre-roma-y-cartago-por-control-sicilia%5F24788" target="_blank">Fuente</a></p>
                 </div>
             `,
                 location: { center: [15.50, 40.50], zoom: 6.2, pitch: 40, bearing: 0 },
@@ -147,7 +147,7 @@ var config = {
                 <p>Comienza la Segunda Guerra Púnica. Roma controla Sicilia, Córcega y Cerdeña, pero el ejército cartaginés amenaza la propia supervivencia de la República. El mundo romano queda conmocionado: Aníbal, al frente de sus tropas y elefantes, irrumpe en Italia por los Alpes. Roma afronta uno de los momentos más críticos de su historia.</p>
                 <div class="media-container">
                     <img src="./assets/order6_218ac.webp" alt="La Invasión de Aníbal" class="story-img">
-                    <p class="image-caption">Aníbal cruzando los Alpes con el ejército cartaginés camino a Roma. Ilustración del siglo XIX. <a href="https://historia.nationalgeographic.com.es/a/anibal-barca-guerrero-que-aterrorizo-roma23343" target="_blank">Fuente</a></p>
+                    <p class="image-caption">Aníbal cruzando los Alpes con el ejército cartaginés camino a Roma. Ilustración del siglo XIX. <a href="https://historia.nationalgeographic.com.es/a/anibal-barca-guerrero-que-aterrorizo-roma%5F23343" target="_blank">Fuente</a></p>
                 </div>
             `,
             location: { center: [10.50, 40.00], zoom: 5.5, pitch: 20, bearing: 0 },
@@ -171,7 +171,7 @@ var config = {
                 <p>Roma hereda el Reino de Pérgamo y destruye Numancia. Tras su victoria en las Guerras Púnicas, Roma ya controla amplias zonas de la península ibérica y ha convertido la antigua Cartago en provincia africana. En este contexto de poder creciente, la República se expande ahora hacia Oriente: la anexión del reino de Pérgamo y la destrucción de Corinto consolidan el dominio romano sobre Grecia y Asia Menor. La influencia helenística se integra plenamente en la cultura romana, transformando su arte, arquitectura y vida urbana.</p>
                 <div class="media-container">
                     <img src="./assets/order7_133ac.jpg" alt="El Legado de Átalo" class="story-img">
-                    <p class="image-caption">La toma de Corinto por las legiones de Lucio Mummio. Pintura de Thomas Allom. <a href="https://historia.nationalgeographic.com.es/a/brutal-conquista-romana-corinto-218500" target="_blank">Fuente</a></p>
+                    <p class="image-caption">La toma de Corinto por las legiones de Lucio Mummio. Pintura de Thomas Allom. <a href="https://historia.nationalgeographic.com.es/a/brutal-conquista-romana-corinto-2%5F18500" target="_blank">Fuente</a></p>
                 </div>
             `,
             location: { center: [15.00, 38.00], zoom: 5, pitch: 30, bearing: 0 },
@@ -263,7 +263,7 @@ var config = {
                 <p>Tras el caótico año de los cuatro emperadores, Vespasiano toma el mando. El triunfo de la dinastía Flavia simboliza el retorno del orden. Se refuerza el control en el Limes Germánico y se sofocan revueltas en Judea.</p>
                 <div class="media-container">
                     <img src="./assets/order11_69dc.webp" alt="La Dinastía Flavia" class="story-img">
-                    <p class="image-caption">Rendida Jerusalén, Tito y Vespasiano celebraron un triunfo conjunto en el año 71. Representado por Giulio Romano en esta pintura sobre tabla realizada en 1537. Museo del Louvre, París. <a href="https://historia.nationalgeographic.com.es/a/ano-cuatro-emperadores-guerra-civil-que-sacudio-a-roma-imperial25495" target="_blank">Fuente</a></p>
+                    <p class="image-caption">Rendida Jerusalén, Tito y Vespasiano celebraron un triunfo conjunto en el año 71. Representado por Giulio Romano en esta pintura sobre tabla realizada en 1537. Museo del Louvre, París. <a href="https://historia.nationalgeographic.com.es/a/ano-cuatro-emperadores-guerra-civil-que-sacudio-a-roma-imperial%5F25495" target="_blank">Fuente</a></p>
                 </div>
             `,
             location: { center: [15.00, 42.00], zoom: 4.5, pitch: 20, bearing: 0 },
@@ -327,7 +327,7 @@ var config = {
                 <p>Roma alcanza su máxima extensión histórica. A la muerte de Trajano, Roma alcanza su mayor extensión territorial: desde Hispania hasta Mesopotamia, desde Britania (muro de Adriano) hasta el desierto del Sahara. Es el punto álgido de la historia imperial.</p>
                 <div class="media-container">
                     <img src="./assets/order14_102dc.webp" alt="La Cúspide del Imperio" class="story-img">
-                    <p class="image-caption">Una legión romana en marcha y estableciendo su campamento en un relieve de la columna de Trajano. <a href="https://historia.nationalgeographic.com.es/a/ano-cuatro-emperadores-guerra-civil-que-sacudio-a-roma-imperial25495" target="_blank">Fuente</a></p>
+                    <p class="image-caption">Una legión romana en marcha y estableciendo su campamento en un relieve de la columna de Trajano. <a href="https://historia.nationalgeographic.com.es/a/ano-cuatro-emperadores-guerra-civil-que-sacudio-a-roma-imperial%5F25495" target="_blank">Fuente</a></p>
                 </div>
             `,
             location: { center: [20.00, 40.00], zoom: 4, pitch: 20, bearing: 0 },
