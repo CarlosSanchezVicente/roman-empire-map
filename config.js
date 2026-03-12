@@ -25,7 +25,7 @@ var config = {
                 <p>En el siglo VI a. C., Roma era todavía una pequeña ciudad dominada culturalmente por los etruscos. Tras la expulsión de los reyes etruscos, Roma nace como una pequeña república en el Lacio. El mapa muestra un territorio limitado, rodeado de pueblos hostiles como los ecuos y los volscos.</p>
                 <div class="media-container">
                     <img src="./assets/order0_500ac.webp" alt="Nacimiento de la república romana" class="story-img">
-                    <p class="image-caption">Cubierta etrusca de sarcófago de Cerveteri. Museo de Villa Giulia, Roma. Siglo VI. <a href="https://historia.nationalgeographic.com.es/a/etruscos-primeros-senores-italia_23052" target="_blank">Fuente</a></p>
+                    <p class="image-caption">Cubierta etrusca de sarcófago de Cerveteri. Museo de Villa Giulia, Roma. Siglo VI. <a href="https://historia.nationalgeographic.com.es/a/etruscos-primeros-senores-italia%5F23052" target="_blank">Fuente</a></p>
                 </div>
             `,
             location: { center: [12.49, 41.89], zoom: 7.5, pitch: 40, bearing: 0 },
