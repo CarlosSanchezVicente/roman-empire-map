@@ -790,11 +790,11 @@
             if (config.auto) {
                 document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
             }
-        });
 
-        // ── POPUPS INTERACTIVOS (registrados tras carga completa) ──
-        setTimeout(function() {
+            // ── POPUPS INTERACTIVOS ──
+            (function() {
             // ── POPUPS INTERACTIVOS ─────────────────────────
+            console.log('POPUP INIT RUNNING');
             var activePopup = null;
 
             // Formatea el año: negativo = a.C., positivo = d.C.
@@ -903,7 +903,9 @@
                 });
             });
             // ────────────────────────────────────────────────
-        }, 3000);
+            })();
+
+        });
     </script>
 
 </body>
