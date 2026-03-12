@@ -794,9 +794,7 @@
             // ── POPUPS INTERACTIVOS ──
             (function() {
             // ── POPUPS INTERACTIVOS ─────────────────────────
-            console.log('POPUP INIT RUNNING');
             var activePopup = null;
-            console.log('step 1: activePopup ok');
 
             // Formatea el año: negativo = a.C., positivo = d.C.
             function formatYear(year) {
@@ -808,7 +806,6 @@
 
             // Todas las capas de puntos — se filtra en tiempo real
             // por las que tienen opacidad > 0 en ese momento
-            console.log('step 2: about to define arrays');
             var allCityLayerIds = [
                 'point-capitales-order0',
                 'point-capitales-order2',
@@ -853,26 +850,45 @@
                 return html + '</div>';
             }
 
-            console.log('step 4: about to register canvas listener');
             // Escucha el clic directamente en el canvas del mapa
             map.getCanvas().addEventListener('click', function(e) {
-                console.log('CANVAS CLICK IN FILE');
                 var rect = map.getCanvas().getBoundingClientRect();
                 var px = e.clientX - rect.left;
                 var py = e.clientY - rect.top;
                 var lngLat = map.unproject([px, py]);
-                console.log('lngLat:', lngLat);
+
+                if (activePopup) { activePopup.remove(); activePopup = null; }
+
                 var allFeatures = map.queryRenderedFeatures([px, py]);
-                console.log('allFeatures:', allFeatures.length);
-                var city = allFeatures.find(function(f) { return allCityLayerIds.indexOf(f.layer.id) !== -1; });
-                console.log('city:', city ? city.properties.latin : 'none');
-                if (city) {
-                    new mapboxgl.Popup({closeButton:true, maxWidth:'240px', offset:10})
-                        .setLngLat(lngLat)
-                        .setHTML('<div class="popup-inner"><div class="popup-title">' + city.properties.latin + '</div></div>')
-                        .addTo(map);
+
+                var cityFeature = allFeatures.find(function(f) {
+                    return allCityLayerIds.indexOf(f.layer.id) !== -1;
+                });
+
+                if (cityFeature) {
+                    activePopup = new mapboxgl.Popup({
+                        closeButton: true, closeOnClick: true,
+                        maxWidth: '240px', offset: 10
+                    })
+                    .setLngLat(lngLat)
+                    .setHTML(buildCityHTML(cityFeature.properties))
+                    .addTo(map);
+                    return;
                 }
-                return; // stop here for debugging
+
+                var fortFeature = allFeatures.find(function(f) {
+                    return allFortLayerIds.indexOf(f.layer.id) !== -1;
+                });
+
+                if (fortFeature) {
+                    activePopup = new mapboxgl.Popup({
+                        closeButton: true, closeOnClick: true,
+                        maxWidth: '240px', offset: 10
+                    })
+                    .setLngLat(lngLat)
+                    .setHTML(buildFortHTML(fortFeature.properties))
+                    .addTo(map);
+                }
                 var rect = map.getCanvas().getBoundingClientRect();
                 var px = e.clientX - rect.left;
                 var py = e.clientY - rect.top;
