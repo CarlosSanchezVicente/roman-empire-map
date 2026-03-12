@@ -745,8 +745,9 @@
                 return y < 0 ? Math.abs(y) + ' a.C.' : y + ' d.C.';
             }
 
-            // IDs exactos de capas de ciudades y capitales
-            var cityLayers = [
+            // Todas las capas de puntos — se filtra en tiempo real
+            // por las que tienen opacidad > 0 en ese momento
+            var allCityLayerIds = [
                 'point-capitales-order0',
                 'point-capitales-order2',
                 'point-capitales-order10',
@@ -754,29 +755,19 @@
                 'capitales-orden2',
                 'capitales-orden10'
             ];
-
-            // IDs exactos de capas de fortificaciones
-            var fortLayers = [
-                'point-majorfort-order0',
-                'point-majorfort-order1',
-                'point-majorfort-order2',
-                'point-majorfort-order3',
-                'point-majorfort-order4',
-                'point-majorfort-order5',
-                'point-majorfort-order6',
-                'point-majorfort-order7',
-                'point-majorfort-order8',
-                'point-majorfort-order9',
-                'point-majorfort-order10',
-                'point-majorfort-order11',
-                'point-majorfort-order12',
-                'point-majorfort-order13',
-                'point-majorfort-order14',
-                'point-majorfort-order15'
+            var allFortLayerIds = [
+                'point-majorfort-order0','point-majorfort-order1',
+                'point-majorfort-order2','point-majorfort-order3',
+                'point-majorfort-order4','point-majorfort-order5',
+                'point-majorfort-order6','point-majorfort-order7',
+                'point-majorfort-order8','point-majorfort-order9',
+                'point-majorfort-order10','point-majorfort-order11',
+                'point-majorfort-order12','point-majorfort-order13',
+                'point-majorfort-order14','point-majorfort-order15'
             ];
 
             function buildCityHTML(props) {
-                var latin  = props.latin  || props.name  || '';
+                var latin  = props.latin  || props.name || '';
                 var modern = props.modern || '';
                 var year   = formatYear(props.startyear);
                 var html   = '<div class="popup-inner">';
@@ -787,8 +778,7 @@
                 if (year) {
                     html += '<div class="popup-date">Fundada en ' + year + '</div>';
                 }
-                html += '</div>';
-                return html;
+                return html + '</div>';
             }
 
             function buildFortHTML(props) {
@@ -797,57 +787,60 @@
                 var html = '<div class="popup-inner">';
                 if (name) html += '<div class="popup-title">' + name + '</div>';
                 if (year) html += '<div class="popup-date">' + year + '</div>';
-                html += '</div>';
-                return html;
+                return html + '</div>';
             }
 
-            function addPopupToLayers(layers, buildHTML) {
-                layers.forEach(function(layerId) {
-                    if (!map.getLayer(layerId)) return;
-
-                    map.on('click', layerId, function(e) {
-                        if (!e.features || e.features.length === 0) return;
-                        if (activePopup) { activePopup.remove(); activePopup = null; }
-
-                        var props = e.features[0].properties;
-                        var coords = e.features[0].geometry.coordinates.slice();
-
-                        activePopup = new mapboxgl.Popup({
-                            closeButton: true,
-                            closeOnClick: false,
-                            maxWidth: '240px',
-                            offset: 10
-                        })
-                        .setLngLat(coords)
-                        .setHTML(buildHTML(props))
-                        .addTo(map);
-
-                        e.originalEvent.stopPropagation();
-                    });
-
-                    map.on('mouseenter', layerId, function() {
-                        map.getCanvas().style.cursor = 'pointer';
-                    });
-                    map.on('mouseleave', layerId, function() {
-                        map.getCanvas().style.cursor = '';
-                    });
-                });
-            }
-
-            // Cierra el popup al hacer clic en el mapa fuera de un punto
+            // Escucha el clic en el mapa completo y busca features
+            // en todas las capas que existan — independientemente de opacidad
             map.on('click', function(e) {
-                var allLayers = cityLayers.concat(fortLayers).filter(function(l) {
-                    return map.getLayer(l);
+                if (activePopup) { activePopup.remove(); activePopup = null; }
+
+                // Busca en capas de ciudades con radio de tolerancia
+                var cityFeatures = map.queryRenderedFeatures(e.point, {
+                    layers: allCityLayerIds.filter(function(l) { return map.getLayer(l); })
                 });
-                var features = map.queryRenderedFeatures(e.point, { layers: allLayers });
-                if (features.length === 0 && activePopup) {
-                    activePopup.remove();
-                    activePopup = null;
+
+                if (cityFeatures.length > 0) {
+                    var props  = cityFeatures[0].properties;
+                    var coords = cityFeatures[0].geometry.coordinates.slice();
+                    activePopup = new mapboxgl.Popup({
+                        closeButton: true, closeOnClick: true,
+                        maxWidth: '240px', offset: 10
+                    })
+                    .setLngLat(coords)
+                    .setHTML(buildCityHTML(props))
+                    .addTo(map);
+                    return;
+                }
+
+                // Busca en capas de fortificaciones
+                var fortFeatures = map.queryRenderedFeatures(e.point, {
+                    layers: allFortLayerIds.filter(function(l) { return map.getLayer(l); })
+                });
+
+                if (fortFeatures.length > 0) {
+                    var props  = fortFeatures[0].properties;
+                    var coords = fortFeatures[0].geometry.coordinates.slice();
+                    activePopup = new mapboxgl.Popup({
+                        closeButton: true, closeOnClick: true,
+                        maxWidth: '240px', offset: 10
+                    })
+                    .setLngLat(coords)
+                    .setHTML(buildFortHTML(props))
+                    .addTo(map);
                 }
             });
 
-            addPopupToLayers(cityLayers, buildCityHTML);
-            addPopupToLayers(fortLayers, buildFortHTML);
+            // Cursor pointer cuando se pasa sobre puntos visibles
+            allCityLayerIds.concat(allFortLayerIds).forEach(function(layerId) {
+                if (!map.getLayer(layerId)) return;
+                map.on('mouseenter', layerId, function() {
+                    map.getCanvas().style.cursor = 'pointer';
+                });
+                map.on('mouseleave', layerId, function() {
+                    map.getCanvas().style.cursor = '';
+                });
+            });
             // ────────────────────────────────────────────────
 
             scroller
