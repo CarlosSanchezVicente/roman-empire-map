@@ -741,73 +741,90 @@
             function formatYear(year) {
                 if (!year && year !== 0) return null;
                 var y = parseInt(year);
-                if (isNaN(y)) return year;
+                if (isNaN(y)) return String(year);
                 return y < 0 ? Math.abs(y) + ' a.C.' : y + ' d.C.';
             }
 
-            // Capas de ciudades y capitales (todas las órdenes)
-            var cityLayers = [];
-            var fortLayers = [];
-            for (var i = 0; i <= 14; i++) {
-                cityLayers.push('point-capitales-order' + i);
-                cityLayers.push('capitales-orden' + i);
-                fortLayers.push('point-majorfort-order' + i);
-            }
-            // Órdenes con nombre especial
-            cityLayers.push('capitales-orden0');
-            cityLayers.push('capitales-orden1');
-            cityLayers.push('capitales-orden2');
-            cityLayers.push('capitales-orden10');
+            // IDs exactos de capas de ciudades y capitales
+            var cityLayers = [
+                'point-capitales-order0',
+                'point-capitales-order2',
+                'point-capitales-order10',
+                'capitales-orden0',
+                'capitales-orden2',
+                'capitales-orden10'
+            ];
 
-            function addPopupToLayers(layers, type) {
+            // IDs exactos de capas de fortificaciones
+            var fortLayers = [
+                'point-majorfort-order0',
+                'point-majorfort-order1',
+                'point-majorfort-order2',
+                'point-majorfort-order3',
+                'point-majorfort-order4',
+                'point-majorfort-order5',
+                'point-majorfort-order6',
+                'point-majorfort-order7',
+                'point-majorfort-order8',
+                'point-majorfort-order9',
+                'point-majorfort-order10',
+                'point-majorfort-order11',
+                'point-majorfort-order12',
+                'point-majorfort-order13',
+                'point-majorfort-order14',
+                'point-majorfort-order15'
+            ];
+
+            function buildCityHTML(props) {
+                var latin  = props.latin  || props.name  || '';
+                var modern = props.modern || '';
+                var year   = formatYear(props.startyear);
+                var html   = '<div class="popup-inner">';
+                html += '<div class="popup-title">' + latin + '</div>';
+                if (modern && modern !== latin) {
+                    html += '<div class="popup-modern">' + modern + '</div>';
+                }
+                if (year) {
+                    html += '<div class="popup-date">Fundada en ' + year + '</div>';
+                }
+                html += '</div>';
+                return html;
+            }
+
+            function buildFortHTML(props) {
+                var name = props.Name || props.name || '';
+                var year = props.year_string || '';
+                var html = '<div class="popup-inner">';
+                if (name) html += '<div class="popup-title">' + name + '</div>';
+                if (year) html += '<div class="popup-date">' + year + '</div>';
+                html += '</div>';
+                return html;
+            }
+
+            function addPopupToLayers(layers, buildHTML) {
                 layers.forEach(function(layerId) {
                     if (!map.getLayer(layerId)) return;
 
                     map.on('click', layerId, function(e) {
+                        if (!e.features || e.features.length === 0) return;
                         if (activePopup) { activePopup.remove(); activePopup = null; }
 
                         var props = e.features[0].properties;
-                        var html = '<div class="popup-inner">';
-
-                        if (type === 'city') {
-                            var latin  = props.latin  || props.name || '';
-                            var modern = props.modern || '';
-                            var year   = formatYear(props.startyear);
-
-                            html += '<div class="popup-title">' + latin + '</div>';
-                            if (modern && modern !== latin) {
-                                html += '<div class="popup-modern">' + modern + '</div>';
-                            }
-                            if (year) {
-                                html += '<div class="popup-date">Fundada en ' + year + '</div>';
-                            }
-                        } else if (type === 'fort') {
-                            var name = props.Name || props.name || '';
-                            var year = props.year_string || '';
-
-                            html += '<div class="popup-title">' + name + '</div>';
-                            if (year) {
-                                html += '<div class="popup-date">' + year + '</div>';
-                            }
-                        }
-
-                        html += '</div>';
+                        var coords = e.features[0].geometry.coordinates.slice();
 
                         activePopup = new mapboxgl.Popup({
                             closeButton: true,
                             closeOnClick: false,
-                            className: 'roman-popup',
                             maxWidth: '240px',
                             offset: 10
                         })
-                        .setLngLat(e.features[0].geometry.coordinates)
-                        .setHTML(html)
+                        .setLngLat(coords)
+                        .setHTML(buildHTML(props))
                         .addTo(map);
 
-                        e.stopPropagation();
+                        e.originalEvent.stopPropagation();
                     });
 
-                    // Cursor pointer al pasar por encima
                     map.on('mouseenter', layerId, function() {
                         map.getCanvas().style.cursor = 'pointer';
                     });
@@ -819,17 +836,18 @@
 
             // Cierra el popup al hacer clic en el mapa fuera de un punto
             map.on('click', function(e) {
-                var features = map.queryRenderedFeatures(e.point, {
-                    layers: cityLayers.concat(fortLayers).filter(function(l) { return map.getLayer(l); })
+                var allLayers = cityLayers.concat(fortLayers).filter(function(l) {
+                    return map.getLayer(l);
                 });
+                var features = map.queryRenderedFeatures(e.point, { layers: allLayers });
                 if (features.length === 0 && activePopup) {
                     activePopup.remove();
                     activePopup = null;
                 }
             });
 
-            addPopupToLayers(cityLayers, 'city');
-            addPopupToLayers(fortLayers, 'fort');
+            addPopupToLayers(cityLayers, buildCityHTML);
+            addPopupToLayers(fortLayers, buildFortHTML);
             // ────────────────────────────────────────────────
 
             scroller
