@@ -796,6 +796,7 @@
             // ── POPUPS INTERACTIVOS ─────────────────────────
             console.log('POPUP INIT RUNNING');
             var activePopup = null;
+            console.log('step 1: activePopup ok');
 
             // Formatea el año: negativo = a.C., positivo = d.C.
             function formatYear(year) {
@@ -807,6 +808,7 @@
 
             // Todas las capas de puntos — se filtra en tiempo real
             // por las que tienen opacidad > 0 en ese momento
+            console.log('step 2: about to define arrays');
             var allCityLayerIds = [
                 'point-capitales-order0',
                 'point-capitales-order2',
@@ -826,6 +828,7 @@
                 'point-majorfort-order14','point-majorfort-order15'
             ];
 
+            console.log('step 3: arrays defined, city:', allCityLayerIds.length);
             function buildCityHTML(props) {
                 var latin  = props.latin  || props.name || '';
                 var modern = props.modern || '';
@@ -850,8 +853,10 @@
                 return html + '</div>';
             }
 
+            console.log('step 4: about to register canvas listener');
             // Escucha el clic directamente en el canvas del mapa
             map.getCanvas().addEventListener('click', function(e) {
+                console.log('CANVAS CLICK IN FILE');
                 var rect = map.getCanvas().getBoundingClientRect();
                 var px = e.clientX - rect.left;
                 var py = e.clientY - rect.top;
