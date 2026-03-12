@@ -680,7 +680,7 @@
         /* ── MAP INIT ──────────────────────────── */
         mapboxgl.accessToken = config.accessToken;
 
-        var map = new mapboxgl.Map({
+        var map = window.map = new mapboxgl.Map({
             container:   'map',
             style:       config.style,
             center:      config.chapters[0].location.center,
@@ -857,6 +857,22 @@
             // Escucha el clic directamente en el canvas del mapa
             map.getCanvas().addEventListener('click', function(e) {
                 console.log('CANVAS CLICK IN FILE');
+                var rect = map.getCanvas().getBoundingClientRect();
+                var px = e.clientX - rect.left;
+                var py = e.clientY - rect.top;
+                var lngLat = map.unproject([px, py]);
+                console.log('lngLat:', lngLat);
+                var allFeatures = map.queryRenderedFeatures([px, py]);
+                console.log('allFeatures:', allFeatures.length);
+                var city = allFeatures.find(function(f) { return allCityLayerIds.indexOf(f.layer.id) !== -1; });
+                console.log('city:', city ? city.properties.latin : 'none');
+                if (city) {
+                    new mapboxgl.Popup({closeButton:true, maxWidth:'240px', offset:10})
+                        .setLngLat(lngLat)
+                        .setHTML('<div class="popup-inner"><div class="popup-title">' + city.properties.latin + '</div></div>')
+                        .addTo(map);
+                }
+                return; // stop here for debugging
                 var rect = map.getCanvas().getBoundingClientRect();
                 var px = e.clientX - rect.left;
                 var py = e.clientY - rect.top;
