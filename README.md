@@ -57,7 +57,7 @@ El recorrido abarca desde los orígenes de la República Romana en el Lacio hast
 ├── config.js         # Datos de capítulos, textos y configuración del mapa
 ├── README.md         # Este archivo
 ├── LICENSE.txt       # Licencia BSD 3-Clause (Mapbox Storytelling)
-└── assets/
+└── assets/           # Imágenes
 │   ├── order0_500ac.webp
 │   ├── order3_298ac.webp
 │   ├── order6_218ac.webp
