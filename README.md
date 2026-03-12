@@ -58,13 +58,19 @@ El recorrido abarca desde los orígenes de la República Romana en el Lacio hast
 ├── README.md         # Este archivo
 ├── LICENSE.txt       # Licencia BSD 3-Clause (Mapbox Storytelling)
 └── assets/
-    ├── order0_500ac.webp
-    ├── order3_298ac.webp
-    ├── order6_218ac.webp
-    ├── order7_133ac.jpg
-    ├── order8_60ac.jpg
-    ├── order11_69dc.webp
-    └── order14_102dc.webp
+│   ├── order0_500ac.webp
+│   ├── order3_298ac.webp
+│   ├── order6_218ac.webp
+│   ├── order7_133ac.jpg
+│   ├── order8_60ac.jpg
+│   ├── order11_69dc.webp
+│   └── order14_102dc.webp
+└── data/             # Datasets GeoJSON de capas cartográficas
+    ├── CombinedExtentLayers_v6.geojson     # Dataset con las distintas extensiones del imperio
+    ├── MajorSettlement_MajorFortsOnly_low_places.geojson   # Dataset con lugares ciudades y enclaves importantes   
+    ├── MajorRoadsOnly_v6.geojson           # Dataset con principales calzadas
+    ├── FortificationsOnly_v6.geojson       # Dataset con fortificaciones
+    └── capitales_romanas.geojson           # Dataset con capitales romanas
 ```
 
 ---
