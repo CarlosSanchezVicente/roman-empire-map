@@ -97,7 +97,7 @@
         /* ═══════════════════════════════════════════════
            STORY WRAPPER
         ═══════════════════════════════════════════════ */
-        #story { position: relative; z-index: 5; }
+        #story { position: relative; z-index: 5; pointer-events: none; }
 
         /* ═══════════════════════════════════════════════
            HEADER — Cinematic Title Card
@@ -796,13 +796,14 @@
                 return html + '</div>';
             }
 
-            // Escucha el clic en el mapa completo y busca features
-            // en todas las capas que existan — independientemente de opacidad
-            map.on('click', function(e) {
+            // Escucha el clic directamente en el canvas del mapa
+            map.getCanvas().addEventListener('click', function(e) {
+                var rect = map.getCanvas().getBoundingClientRect();
+                var point = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+
                 if (activePopup) { activePopup.remove(); activePopup = null; }
 
-                // Busca en capas de ciudades con radio de tolerancia
-                var cityFeatures = map.queryRenderedFeatures(e.point, {
+                var cityFeatures = map.queryRenderedFeatures(point, {
                     layers: allCityLayerIds.filter(function(l) { return map.getLayer(l); })
                 });
 
@@ -819,8 +820,7 @@
                     return;
                 }
 
-                // Busca en capas de fortificaciones
-                var fortFeatures = map.queryRenderedFeatures(e.point, {
+                var fortFeatures = map.queryRenderedFeatures(point, {
                     layers: allFortLayerIds.filter(function(l) { return map.getLayer(l); })
                 });
 
