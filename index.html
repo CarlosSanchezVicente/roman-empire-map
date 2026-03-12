@@ -792,8 +792,8 @@
             }
         });
 
-        // ── POPUPS INTERACTIVOS (registrados al estar el mapa listo) ──
-        map.once('idle', function() {
+        // ── POPUPS INTERACTIVOS (registrados tras carga completa) ──
+        setTimeout(function() {
             // ── POPUPS INTERACTIVOS ─────────────────────────
             var activePopup = null;
 
@@ -903,7 +903,7 @@
                 });
             });
             // ────────────────────────────────────────────────
-        });
+        }, 3000);
     </script>
 
 </body>
