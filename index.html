@@ -842,11 +842,20 @@
             }
 
             function buildFortHTML(props) {
-                var name = props.Name || props.name || '';
-                var year = props.year_string || '';
-                var html = '<div class="popup-inner">';
-                if (name) html += '<div class="popup-title">' + name + '</div>';
-                if (year) html += '<div class="popup-date">' + year + '</div>';
+                // Ciudades menores y asentamientos usan los mismos campos que capitales
+                // Fortificaciones usan Name y year_string
+                var latin  = props.latin  || props.Name || props.name || '';
+                var modern = props.modern || '';
+                var year   = props.startyear ? formatYear(props.startyear) : (props.year_string || '');
+                var html   = '<div class="popup-inner">';
+                html += '<div class="popup-title">' + latin + '</div>';
+                if (modern && modern !== latin) {
+                    html += '<div class="popup-modern">' + modern + '</div>';
+                }
+                if (year) {
+                    var label = props.startyear ? 'Fundada en ' : '';
+                    html += '<div class="popup-date">' + label + year + '</div>';
+                }
                 return html + '</div>';
             }
 
@@ -881,12 +890,17 @@
                 });
 
                 if (fortFeature) {
+                    var props = fortFeature.properties;
+                    // Si tiene campo 'ancient' es una ciudad menor, si no es una fortificación
+                    var html = (props.ancient !== undefined)
+                        ? buildCityHTML(props)
+                        : buildFortHTML(props);
                     activePopup = new mapboxgl.Popup({
                         closeButton: true, closeOnClick: false,
                         maxWidth: '240px', offset: 10
                     })
                     .setLngLat(lngLat)
-                    .setHTML(buildFortHTML(fortFeature.properties))
+                    .setHTML(html)
                     .addTo(map);
                 }
                 var rect = map.getCanvas().getBoundingClientRect();
