@@ -801,6 +801,9 @@
                 var rect = map.getCanvas().getBoundingClientRect();
                 var point = { x: e.clientX - rect.left, y: e.clientY - rect.top };
 
+                // Convertir punto de pantalla a coordenadas geográficas
+                var lngLat = map.unproject(point);
+
                 if (activePopup) { activePopup.remove(); activePopup = null; }
 
                 var cityFeatures = map.queryRenderedFeatures(point, {
@@ -808,13 +811,12 @@
                 });
 
                 if (cityFeatures.length > 0) {
-                    var props  = cityFeatures[0].properties;
-                    var coords = cityFeatures[0].geometry.coordinates.slice();
+                    var props = cityFeatures[0].properties;
                     activePopup = new mapboxgl.Popup({
                         closeButton: true, closeOnClick: true,
                         maxWidth: '240px', offset: 10
                     })
-                    .setLngLat(coords)
+                    .setLngLat(lngLat)
                     .setHTML(buildCityHTML(props))
                     .addTo(map);
                     return;
@@ -825,13 +827,12 @@
                 });
 
                 if (fortFeatures.length > 0) {
-                    var props  = fortFeatures[0].properties;
-                    var coords = fortFeatures[0].geometry.coordinates.slice();
+                    var props = fortFeatures[0].properties;
                     activePopup = new mapboxgl.Popup({
                         closeButton: true, closeOnClick: true,
                         maxWidth: '240px', offset: 10
                     })
-                    .setLngLat(coords)
+                    .setLngLat(lngLat)
                     .setHTML(buildFortHTML(props))
                     .addTo(map);
                 }
