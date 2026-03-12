@@ -740,115 +740,7 @@
             }
 
 
-            // ── POPUPS INTERACTIVOS ─────────────────────────
-            var activePopup = null;
-
-            // Formatea el año: negativo = a.C., positivo = d.C.
-            function formatYear(year) {
-                if (!year && year !== 0) return null;
-                var y = parseInt(year);
-                if (isNaN(y)) return String(year);
-                return y < 0 ? Math.abs(y) + ' a.C.' : y + ' d.C.';
-            }
-
-            // Todas las capas de puntos — se filtra en tiempo real
-            // por las que tienen opacidad > 0 en ese momento
-            var allCityLayerIds = [
-                'point-capitales-order0',
-                'point-capitales-order2',
-                'point-capitales-order10',
-                'capitales-orden0',
-                'capitales-orden2',
-                'capitales-orden10'
-            ];
-            var allFortLayerIds = [
-                'point-majorfort-order0','point-majorfort-order1',
-                'point-majorfort-order2','point-majorfort-order3',
-                'point-majorfort-order4','point-majorfort-order5',
-                'point-majorfort-order6','point-majorfort-order7',
-                'point-majorfort-order8','point-majorfort-order9',
-                'point-majorfort-order10','point-majorfort-order11',
-                'point-majorfort-order12','point-majorfort-order13',
-                'point-majorfort-order14','point-majorfort-order15'
-            ];
-
-            function buildCityHTML(props) {
-                var latin  = props.latin  || props.name || '';
-                var modern = props.modern || '';
-                var year   = formatYear(props.startyear);
-                var html   = '<div class="popup-inner">';
-                html += '<div class="popup-title">' + latin + '</div>';
-                if (modern && modern !== latin) {
-                    html += '<div class="popup-modern">' + modern + '</div>';
-                }
-                if (year) {
-                    html += '<div class="popup-date">Fundada en ' + year + '</div>';
-                }
-                return html + '</div>';
-            }
-
-            function buildFortHTML(props) {
-                var name = props.Name || props.name || '';
-                var year = props.year_string || '';
-                var html = '<div class="popup-inner">';
-                if (name) html += '<div class="popup-title">' + name + '</div>';
-                if (year) html += '<div class="popup-date">' + year + '</div>';
-                return html + '</div>';
-            }
-
-            // Escucha el clic directamente en el canvas del mapa
-            map.getCanvas().addEventListener('click', function(e) {
-                var rect = map.getCanvas().getBoundingClientRect();
-                var px = e.clientX - rect.left;
-                var py = e.clientY - rect.top;
-                var lngLat = map.unproject([px, py]);
-
-                if (activePopup) { activePopup.remove(); activePopup = null; }
-
-                // Consulta todas las features en el punto y filtra por layer ID
-                var allFeatures = map.queryRenderedFeatures([px, py]);
-
-                var cityFeature = allFeatures.find(function(f) {
-                    return allCityLayerIds.indexOf(f.layer.id) !== -1;
-                });
-
-                if (cityFeature) {
-                    activePopup = new mapboxgl.Popup({
-                        closeButton: true, closeOnClick: true,
-                        maxWidth: '240px', offset: 10
-                    })
-                    .setLngLat(lngLat)
-                    .setHTML(buildCityHTML(cityFeature.properties))
-                    .addTo(map);
-                    return;
-                }
-
-                var fortFeature = allFeatures.find(function(f) {
-                    return allFortLayerIds.indexOf(f.layer.id) !== -1;
-                });
-
-                if (fortFeature) {
-                    activePopup = new mapboxgl.Popup({
-                        closeButton: true, closeOnClick: true,
-                        maxWidth: '240px', offset: 10
-                    })
-                    .setLngLat(lngLat)
-                    .setHTML(buildFortHTML(fortFeature.properties))
-                    .addTo(map);
-                }
-            });
-
-            // Cursor pointer cuando se pasa sobre puntos visibles
-            allCityLayerIds.concat(allFortLayerIds).forEach(function(layerId) {
-                if (!map.getLayer(layerId)) return;
-                map.on('mouseenter', layerId, function() {
-                    map.getCanvas().style.cursor = 'pointer';
-                });
-                map.on('mouseleave', layerId, function() {
-                    map.getCanvas().style.cursor = '';
-                });
-            });
-            // ────────────────────────────────────────────────
+            // Popups registrados después de la carga del mapa
 
             scroller
                 .setup({ step: '.step', offset: 0.5, progress: true })
@@ -898,6 +790,119 @@
             if (config.auto) {
                 document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
             }
+        });
+
+        // ── POPUPS INTERACTIVOS (registrados al estar el mapa listo) ──
+        map.once('idle', function() {
+            // ── POPUPS INTERACTIVOS ─────────────────────────
+            var activePopup = null;
+
+            // Formatea el año: negativo = a.C., positivo = d.C.
+            function formatYear(year) {
+                if (!year && year !== 0) return null;
+                var y = parseInt(year);
+                if (isNaN(y)) return String(year);
+                return y < 0 ? Math.abs(y) + ' a.C.' : y + ' d.C.';
+            }
+
+            // Todas las capas de puntos — se filtra en tiempo real
+            // por las que tienen opacidad > 0 en ese momento
+            var allCityLayerIds = [
+                'point-capitales-order0',
+                'point-capitales-order2',
+                'point-capitales-order10',
+                'capitales-orden0',
+                'capitales-orden2',
+                'capitales-orden10'
+            ];
+            var allFortLayerIds = [
+                'point-majorfort-order0','point-majorfort-order1',
+                'point-majorfort-order2','point-majorfort-order3',
+                'point-majorfort-order4','point-majorfort-order5',
+                'point-majorfort-order6','point-majorfort-order7',
+                'point-majorfort-order8','point-majorfort-order9',
+                'point-majorfort-order10','point-majorfort-order11',
+                'point-majorfort-order12','point-majorfort-order13',
+                'point-majorfort-order14','point-majorfort-order15'
+            ];
+
+            function buildCityHTML(props) {
+                var latin  = props.latin  || props.name || '';
+                var modern = props.modern || '';
+                var year   = formatYear(props.startyear);
+                var html   = '<div class="popup-inner">';
+                html += '<div class="popup-title">' + latin + '</div>';
+                if (modern && modern !== latin) {
+                        html += '<div class="popup-modern">' + modern + '</div>';
+                }
+                if (year) {
+                        html += '<div class="popup-date">Fundada en ' + year + '</div>';
+                }
+                return html + '</div>';
+            }
+
+            function buildFortHTML(props) {
+                var name = props.Name || props.name || '';
+                var year = props.year_string || '';
+                var html = '<div class="popup-inner">';
+                if (name) html += '<div class="popup-title">' + name + '</div>';
+                if (year) html += '<div class="popup-date">' + year + '</div>';
+                return html + '</div>';
+            }
+
+            // Escucha el clic directamente en el canvas del mapa
+            map.getCanvas().addEventListener('click', function(e) {
+                var rect = map.getCanvas().getBoundingClientRect();
+                var px = e.clientX - rect.left;
+                var py = e.clientY - rect.top;
+                var lngLat = map.unproject([px, py]);
+
+                if (activePopup) { activePopup.remove(); activePopup = null; }
+
+                // Consulta todas las features en el punto y filtra por layer ID
+                var allFeatures = map.queryRenderedFeatures([px, py]);
+
+                var cityFeature = allFeatures.find(function(f) {
+                        return allCityLayerIds.indexOf(f.layer.id) !== -1;
+                });
+
+                if (cityFeature) {
+                        activePopup = new mapboxgl.Popup({
+                        closeButton: true, closeOnClick: true,
+                        maxWidth: '240px', offset: 10
+                        })
+                        .setLngLat(lngLat)
+                        .setHTML(buildCityHTML(cityFeature.properties))
+                        .addTo(map);
+                        return;
+                }
+
+                var fortFeature = allFeatures.find(function(f) {
+                        return allFortLayerIds.indexOf(f.layer.id) !== -1;
+                });
+
+                if (fortFeature) {
+                        activePopup = new mapboxgl.Popup({
+                        closeButton: true, closeOnClick: true,
+                        maxWidth: '240px', offset: 10
+                        })
+                        .setLngLat(lngLat)
+                        .setHTML(buildFortHTML(fortFeature.properties))
+                        .addTo(map);
+                }
+            });
+
+            // Cursor pointer cuando se pasa sobre puntos visibles
+            allCityLayerIds.concat(allFortLayerIds).forEach(function(layerId) {
+                if (!map.getLayer(layerId)) return;
+                map.on('mouseenter', layerId, function() {
+                        map.getCanvas().style.cursor = 'pointer';
+                });
+                map.on('mouseleave', layerId, function() {
+                        map.getCanvas().style.cursor = '';
+                });
+            });
+            // ────────────────────────────────────────────────
         });
     </script>
 
