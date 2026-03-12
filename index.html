@@ -199,6 +199,7 @@
         #features {
             padding-top: 12vh;
             padding-bottom: 15vh;
+            pointer-events: none; /* deja pasar clics al mapa */
         }
 
         .step {
@@ -207,6 +208,7 @@
             transform: translateY(16px);
             transition: opacity var(--transition), transform var(--transition);
             will-change: opacity, transform;
+            pointer-events: none;
         }
 
         .step.active {
@@ -216,6 +218,7 @@
 
         /* Chapter panel */
         .step > div {
+            pointer-events: auto;
             position: relative;
             padding: 0;
             border-radius: 2px;
