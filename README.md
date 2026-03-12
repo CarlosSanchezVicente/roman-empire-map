@@ -14,7 +14,7 @@ El recorrido abarca desde los orígenes de la República Romana en el Lacio hast
 
 ## Demo
 
-🌐 [Ver el proyecto en GitHub Pages](https://tu-usuario.github.io/roman-empire-map)
+🌐 [Ver la narrativa interactiva](https://carlossanchezvicente.github.io/roman-empire-map/)
 
 ---
 
@@ -65,29 +65,7 @@ El recorrido abarca desde los orígenes de la República Romana en el Lacio hast
     ├── order8_60ac.jpg
     ├── order11_69dc.webp
     └── order14_102dc.webp
-└── data/
-    ├── capitales_romanas.geojson           # Archivo con capitales del Imperio Romano
-    ├── CombinedExtentLayers_v6.geojson     # Archivo con las extensiones de cada fase de expansión del Imperio
-    ├── FortificationsOnly_v6.geojson       # Archivo con las fortificaciones
-    ├── MajorRoadsOnly_v6.geojson           # Archivo con las principales carreteras
-    ├── MajorSettlement_MajorFortsOnly_low_places.geojson       # Archivo con todos los enclaves importantes del Imperio
-    └── nombres_ciudades.geojson            # Archivo con las ciudades del Imperio (capitales y ciudades importantes)
 ```
-
----
-
-## Ejecución en local
-
-Al abrir `index.html` directamente desde el sistema de archivos se producen errores de CORS. Se recomienda servirlo desde un servidor local:
-
-**Con VS Code:**
-Instala la extensión [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) y haz clic en *"Go Live"*.
-
-**Con Python:**
-```bash
-python -m http.server 8000
-```
-Abre después `http://localhost:8000` en el navegador.
 
 ---
 
