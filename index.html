@@ -801,16 +801,16 @@
                 var rect = map.getCanvas().getBoundingClientRect();
                 var px = e.clientX - rect.left;
                 var py = e.clientY - rect.top;
-                var point = new mapboxgl.Point(px, py);
-
-                // Convertir punto de pantalla a coordenadas geográficas
-                var lngLat = map.unproject(point);
+                var lngLat = map.unproject([px, py]);
 
                 if (activePopup) { activePopup.remove(); activePopup = null; }
 
-                var cityFeatures = map.queryRenderedFeatures(point, {
-                    layers: allCityLayerIds.filter(function(l) { return map.getLayer(l); })
-                });
+                var activeCityLayers = allCityLayerIds.filter(function(l) { return map.getLayer(l); });
+                var activeFortLayers = allFortLayerIds.filter(function(l) { return map.getLayer(l); });
+
+                var cityFeatures = activeCityLayers.length > 0
+                    ? map.queryRenderedFeatures([px, py], { layers: activeCityLayers })
+                    : [];
 
                 if (cityFeatures.length > 0) {
                     var props = cityFeatures[0].properties;
@@ -824,9 +824,9 @@
                     return;
                 }
 
-                var fortFeatures = map.queryRenderedFeatures(point, {
-                    layers: allFortLayerIds.filter(function(l) { return map.getLayer(l); })
-                });
+                var fortFeatures = activeFortLayers.length > 0
+                    ? map.queryRenderedFeatures([px, py], { layers: activeFortLayers })
+                    : [];
 
                 if (fortFeatures.length > 0) {
                     var props = fortFeatures[0].properties;
