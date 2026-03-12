@@ -805,37 +805,35 @@
 
                 if (activePopup) { activePopup.remove(); activePopup = null; }
 
-                var activeCityLayers = allCityLayerIds.filter(function(l) { return map.getLayer(l); });
-                var activeFortLayers = allFortLayerIds.filter(function(l) { return map.getLayer(l); });
+                // Consulta todas las features en el punto y filtra por layer ID
+                var allFeatures = map.queryRenderedFeatures([px, py]);
 
-                var cityFeatures = activeCityLayers.length > 0
-                    ? map.queryRenderedFeatures([px, py], { layers: activeCityLayers })
-                    : [];
+                var cityFeature = allFeatures.find(function(f) {
+                    return allCityLayerIds.indexOf(f.layer.id) !== -1;
+                });
 
-                if (cityFeatures.length > 0) {
-                    var props = cityFeatures[0].properties;
+                if (cityFeature) {
                     activePopup = new mapboxgl.Popup({
                         closeButton: true, closeOnClick: true,
                         maxWidth: '240px', offset: 10
                     })
                     .setLngLat(lngLat)
-                    .setHTML(buildCityHTML(props))
+                    .setHTML(buildCityHTML(cityFeature.properties))
                     .addTo(map);
                     return;
                 }
 
-                var fortFeatures = activeFortLayers.length > 0
-                    ? map.queryRenderedFeatures([px, py], { layers: activeFortLayers })
-                    : [];
+                var fortFeature = allFeatures.find(function(f) {
+                    return allFortLayerIds.indexOf(f.layer.id) !== -1;
+                });
 
-                if (fortFeatures.length > 0) {
-                    var props = fortFeatures[0].properties;
+                if (fortFeature) {
                     activePopup = new mapboxgl.Popup({
                         closeButton: true, closeOnClick: true,
                         maxWidth: '240px', offset: 10
                     })
                     .setLngLat(lngLat)
-                    .setHTML(buildFortHTML(props))
+                    .setHTML(buildFortHTML(fortFeature.properties))
                     .addTo(map);
                 }
             });
