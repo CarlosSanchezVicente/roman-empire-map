@@ -409,6 +409,72 @@
         /* ═══════════════════════════════════════════════
            ANIMATIONS
         ═══════════════════════════════════════════════ */
+        /* ═══════════════════════════════════════════════
+           POPUPS — Ciudades y Fortificaciones
+        ═══════════════════════════════════════════════ */
+        .mapboxgl-popup-content {
+            background: var(--panel-bg) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 2px !important;
+            padding: 0 !important;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.6) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            min-width: 180px;
+            max-width: 240px;
+        }
+
+        .mapboxgl-popup-tip {
+            border-top-color: rgba(201,168,76,0.4) !important;
+            border-bottom-color: rgba(201,168,76,0.4) !important;
+        }
+
+        .mapboxgl-popup-close-button {
+            color: var(--text-dim) !important;
+            font-size: 1.1rem !important;
+            padding: 4px 8px !important;
+            line-height: 1 !important;
+            background: none !important;
+        }
+
+        .mapboxgl-popup-close-button:hover {
+            color: var(--gold) !important;
+            background: none !important;
+        }
+
+        .popup-inner {
+            padding: 14px 18px;
+            border-left: 3px solid var(--gold);
+        }
+
+        .popup-title {
+            font-family: var(--font-display);
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--marble);
+            text-transform: uppercase;
+            margin-bottom: 2px;
+            line-height: 1.3;
+        }
+
+        .popup-modern {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--parchment-dim);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .popup-date {
+            font-family: var(--font-display);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
         @keyframes fadeRise {
             from { opacity: 0; transform: translateY(22px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -666,6 +732,105 @@
                     }
                 });
             }
+
+
+            // ── POPUPS INTERACTIVOS ─────────────────────────
+            var activePopup = null;
+
+            // Formatea el año: negativo = a.C., positivo = d.C.
+            function formatYear(year) {
+                if (!year && year !== 0) return null;
+                var y = parseInt(year);
+                if (isNaN(y)) return year;
+                return y < 0 ? Math.abs(y) + ' a.C.' : y + ' d.C.';
+            }
+
+            // Capas de ciudades y capitales (todas las órdenes)
+            var cityLayers = [];
+            var fortLayers = [];
+            for (var i = 0; i <= 14; i++) {
+                cityLayers.push('point-capitales-order' + i);
+                cityLayers.push('capitales-orden' + i);
+                fortLayers.push('point-majorfort-order' + i);
+            }
+            // Órdenes con nombre especial
+            cityLayers.push('capitales-orden0');
+            cityLayers.push('capitales-orden1');
+            cityLayers.push('capitales-orden2');
+            cityLayers.push('capitales-orden10');
+
+            function addPopupToLayers(layers, type) {
+                layers.forEach(function(layerId) {
+                    if (!map.getLayer(layerId)) return;
+
+                    map.on('click', layerId, function(e) {
+                        if (activePopup) { activePopup.remove(); activePopup = null; }
+
+                        var props = e.features[0].properties;
+                        var html = '<div class="popup-inner">';
+
+                        if (type === 'city') {
+                            var latin  = props.latin  || props.name || '';
+                            var modern = props.modern || '';
+                            var year   = formatYear(props.startyear);
+
+                            html += '<div class="popup-title">' + latin + '</div>';
+                            if (modern && modern !== latin) {
+                                html += '<div class="popup-modern">' + modern + '</div>';
+                            }
+                            if (year) {
+                                html += '<div class="popup-date">Fundada en ' + year + '</div>';
+                            }
+                        } else if (type === 'fort') {
+                            var name = props.Name || props.name || '';
+                            var year = props.year_string || '';
+
+                            html += '<div class="popup-title">' + name + '</div>';
+                            if (year) {
+                                html += '<div class="popup-date">' + year + '</div>';
+                            }
+                        }
+
+                        html += '</div>';
+
+                        activePopup = new mapboxgl.Popup({
+                            closeButton: true,
+                            closeOnClick: false,
+                            className: 'roman-popup',
+                            maxWidth: '240px',
+                            offset: 10
+                        })
+                        .setLngLat(e.features[0].geometry.coordinates)
+                        .setHTML(html)
+                        .addTo(map);
+
+                        e.stopPropagation();
+                    });
+
+                    // Cursor pointer al pasar por encima
+                    map.on('mouseenter', layerId, function() {
+                        map.getCanvas().style.cursor = 'pointer';
+                    });
+                    map.on('mouseleave', layerId, function() {
+                        map.getCanvas().style.cursor = '';
+                    });
+                });
+            }
+
+            // Cierra el popup al hacer clic en el mapa fuera de un punto
+            map.on('click', function(e) {
+                var features = map.queryRenderedFeatures(e.point, {
+                    layers: cityLayers.concat(fortLayers).filter(function(l) { return map.getLayer(l); })
+                });
+                if (features.length === 0 && activePopup) {
+                    activePopup.remove();
+                    activePopup = null;
+                }
+            });
+
+            addPopupToLayers(cityLayers, 'city');
+            addPopupToLayers(fortLayers, 'fort');
+            // ────────────────────────────────────────────────
 
             scroller
                 .setup({ step: '.step', offset: 0.5, progress: true })
